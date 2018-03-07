@@ -1,0 +1,115 @@
+{
+  "catalog" : {
+    "name" : "delphi",
+    "header" : {
+      "isVisible" : true,
+      "customTemplate" : "delphi/templates/header.html",
+      "banner" : {
+        "position" : "",
+        "height" : "",
+        "logo" : [
+           {
+             "name" : "desktop",
+             "path" : "img/delphi/logo.png"
+          },
+          {
+            "name" : "mobile",
+            "path" : "img/delphi/logo.png"
+          },
+          {
+            "name" : "tablet",
+            "path" : "img/delphi/logo.png"
+          }
+        ]
+      }
+    },
+    "navbar" : {
+      "isVisible" : true,
+      "contents" : [
+        {
+          "template" : "delphi/template/language.html",
+          "isVisible" : true,
+          "position" : "Right"
+        },
+        {
+          "template" : "delphi/template/cart.html",
+          "isVisible" : true,
+          "position" : "Left"
+        }
+      ]
+    },
+    "tabs" : [
+      {
+        "name" : "application",
+        "filters" : [
+          {
+            "name" : "Year",
+            "inputType" : "select",
+            "label" : false,
+            "optional" : false
+          },{
+            "name" : "Make",
+            "inputType" : "select",
+            "label" : false,
+            "optional" : false
+          },{
+            "name" : "Model",
+            "inputType" : "select",
+            "label" : false,
+            "optional" : false
+          },{
+            "name" : "Product",
+            "inputType" : "select",
+            "label" : false,
+            "optional" : true
+          },{
+            "name" : "Engine",
+            "inputType" : "select",
+            "label" : false,
+            "optional" : true
+          }
+        ],
+        "body" : {
+          "rows" : 2,
+          "columns" : 1,
+          "sections" : [
+            {
+              "coordinate" : {"row" : 1, "col" : 1},
+              "elementId" : "search",
+              "template" : "fragments/search.html"
+            },
+            {
+              "coordinate" : {"row" : 1, "col" : 2},
+              "elementId" : "table",
+              "template" : "fragments/table.html"
+            }
+          ]
+        }
+      },
+      {
+        "name" : "Part Number",
+        "filters" : [
+          {
+            "name" : "PartNumber",
+            "inputType" : "input",
+            "label" : true,
+            "optional" : false
+          }
+        ]
+      }
+    ],
+    "footer" : {
+      "customTemplate" : "delphi/templates/footer.html",
+      "logo" : [
+        {
+          "name" : "dark",
+          "path" : "img/logo.png"
+        },
+        {
+          "name" : "red",
+          "path" : "img/logo.png"
+        }
+      ]
+    }
+  }
+}

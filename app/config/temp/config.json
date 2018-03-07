@@ -1,0 +1,16 @@
+[
+  {
+    "name" : "",
+    "type" : "",
+    "inputs" : [
+      {
+        "name" : "",
+        "display_type" : "",
+        "type": "",
+        "data" : {
+          "source_ref_id" : 0
+        }
+      }
+    ]
+  }
+]
