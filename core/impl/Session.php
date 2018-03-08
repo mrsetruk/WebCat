@@ -280,7 +280,7 @@ class Session
         // set session cookie setting manually,
         // Why? because you need to explicitly set session expiry, path, domain, secure, and HTTP.
         // @see https://www.owasp.org/index.php/PHP_Security_Cheat_Sheet#Cookies
-        setcookie(session_name(), session_id(), time() + ConfigOld::get('SESSION_COOKIE_EXPIRY') /*a week*/, ConfigurationOld::get('COOKIE_PATH'), ConfigurationOld::get('COOKIE_DOMAIN'), ConfigurationOld::get('COOKIE_SECURE'), ConfigurationOld::get('COOKIE_HTTP'));
+        setcookie(session_name(), session_id(), time() + Config::get('SESSION_COOKIE_EXPIRY') /*a week*/, ConfigurationOld::get('COOKIE_PATH'), ConfigurationOld::get('COOKIE_DOMAIN'), ConfigurationOld::get('COOKIE_SECURE'), ConfigurationOld::get('COOKIE_HTTP'));
     }
     /**
      * update session id in database

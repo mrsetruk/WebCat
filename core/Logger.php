@@ -24,7 +24,8 @@ class Logger
      * @param  string  $linenum
      */
     public static function log($header="", $message="", $filename="", $linenum=""){
-        $logfile = BASE_DIR . "logs/log.txt";
+        $config = new Config(require(CONFIG_PATH));
+        $logfile = $config->get('base_dir') . "/logs/log.txt";
         $date = date("d/m/Y G:i:s");
         $err = $date." | ".$filename." | ".$linenum." | ".$header. "\n";
         $message = is_array($message)? implode("\n", $message): $message;

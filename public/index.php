@@ -6,25 +6,11 @@
  */
 
 /**
- * Composer
+ * Composer Autoload
  */
 require dirname(__DIR__) . '/vendor/autoload.php';
 
-/*
-|--------------------------------------------------------------------------
-| Define Application ConfigurationOld Constants
-|--------------------------------------------------------------------------
-|
-| PUBLIC_ROOT: 	the root URL for the application (see below).
-| BASE_DIR: 	path to the directory that has all of your "app", "public", "vendor", ... directories.
-| IMAGES:		path to upload images, don't use it for displaying images, use ConfigurationOld::get('root') . "/img/" instead.
-| APP:			path to app directory.
-|
-*/
-
-define('BASE_DIR', str_replace("\\", "/", dirname(__DIR__)));
-define('PUBLIC_DIR',  BASE_DIR . "/public/");
-define('SHOW_ERRORS', true);
+define('CONFIG_PATH', str_replace("\\", "/", dirname(__DIR__).'/app/config.php'));
 
 /**
  * Error and Exception handling
@@ -43,19 +29,12 @@ set_exception_handler('Handler::exceptionHandler');
 
 /*
 |--------------------------------------------------------------------------
-| ConfigurationOld App
+| Configuration App
 |--------------------------------------------------------------------------
 |
 */
-//$appConfig = new ConfigurationOld(array(
-//    'base_dir' => BASE_DIR.'/',
-//    'public_dir' => PUBLIC_DIR,
-//    'base_url' => $_SERVER['REQUEST_SCHEME'].'://'.$_SERVER['HTTP_HOST'].'/'
-//
-//));
-//define('APP_CONFIG',$appConfig->toArray());
-
-//var_dump($GLOBALS);
+$config = new Config(require(CONFIG_PATH));
+//var_dump($config);
 
 /**
  * Routing
@@ -102,10 +81,10 @@ $router->before('GET|POST', '/auth/.*', function() {
 
 });
 
-$router->mount('/auth', function() use ($router) {
+$router->mount('/auth', function() use ($router, $config) {
 
-    $router->get('/login', function() {
-
+    $router->get('/login', function() use($config) {
+        var_dump($config);
     });
 
     $router->match('GET|POST', '/logout', function() {

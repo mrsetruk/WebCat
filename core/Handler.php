@@ -31,15 +31,15 @@ class Handler
      *
      * @return void
      */
-    public static function exceptionHandler($exception)
-    {
+    public static function exceptionHandler($exception){
+        $config = new Config(require(CONFIG_PATH));
         // Code is 404 (not found) or 500 (general error)
         $code = $exception->getCode();
         if ($code != 404) {
             $code = 500;
         }
         http_response_code($code);
-        if (SHOW_ERRORS) {
+        if ($config->get('is_dev')) {
             echo "<h1>Fatal error</h1>";
             echo "<p>Uncaught exception: '" . get_class($exception) . "'</p>";
             echo "<p>Message: '" . $exception->getMessage() . "'</p>";

@@ -16,7 +16,6 @@ class View
      */
     public static function render($view, $args = [])
     {
-//        $args = array_merge(APP_CONFIG, $args);
         extract($args, EXTR_SKIP);
         $file = dirname(__DIR__) . "/app/views/$view";  // relative to Core directory
         if (is_readable($file)) {
@@ -40,9 +39,6 @@ class View
             $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/app/views');
             $twig = new \Twig_Environment($loader);
         }
-        //$args = array_merge(require APP_DIR.'config/app.php',$args);
-//        $args = array_merge(APP_CONFIG, $args);
-//        var_dump($args);
         echo $twig->render($template, $args);
     }
 }
