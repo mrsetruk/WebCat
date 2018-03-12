@@ -6,8 +6,156 @@
 
 {% block title %}{{name}}{% endblock %}
 
+{% block header %}
+
+{% endblock %}
+
 {% block content %}
-    <h1>Bar</h1>
+<nav class="navbar">
+    <form class="form-inline">
+        <div class="form-group mr-sm-2">
+            <label for="year-select"></label>
+            <select class="custom-select form-control" id="year-select">
+                <option selected>Years</option>
+                <option>2018</option>
+                <option>2017</option>
+                <option>2016</option>
+                <option>2015</option>
+                <option>2014</option>
+            </select>
+        </div>
+        <div class="form-group mr-sm-2">
+            <label for="make-select"></label>
+            <select class="custom-select form-control" id="make-select">
+                <option selected >Makes</option>
+                <option>Acura</option>
+                <option>Honda</option>
+                <option>BMW</option>
+            </select>
+        </div>
+        <div class="form-group mr-sm-2">
+            <label for="model-select"></label>
+            <select class="custom-select form-control" id="model-select">
+                <option selected >Models</option>
+                <option>3</option>
+                <option>250i</option>
+                <option>550Li</option>
+            </select>
+        </div>
+        <div class="form-group mr-sm-2">
+            <label for="product-select"></label>
+            <select class="custom-select form-control" id="product-select">
+                <option selected >Products</option>
+                <option>Thermostat</option>
+                <option>Sterring Gear</option>
+            </select>
+        </div>
+        <div class="form-group mr-sm-2">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#advanced-search">
+                More ...
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="advanced-search" tabindex="-1" role="dialog" aria-labelledby="advanced-search-modal-label" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="advanced-search-modal-label">Advanced Search</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            ...
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="text" placeholder="Part Number, Vin, Others">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#login">
+                Login
+            </button>
+            <!-- Modal -->
+            <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="login-modal-label" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="login-modal-label">Login</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="px-4 py-3">
+                                <div class="form-group">
+                                    <label for="login-form-mail">Email address</label>
+                                    <input type="email" class="form-control" id="login-form-mail" placeholder="email@example.com">
+                                </div>
+                                <div class="form-group">
+                                    <label for="login-form-password">Password</label>
+                                    <input type="password" class="form-control" id="login-form-password" placeholder="Password">
+                                </div>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="login-form-check">
+                                    <label class="form-check-label" for="login-form-check">
+                                        Remember me
+                                    </label>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary">Forgot password?</button>
+                            <button type="submit" class="btn btn-primary">Sign in</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--<div class="dropdown">-->
+                <!--<button class="btn dropdown-toggle" type="button" id="login-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                    <!--Login-->
+                <!--</button>-->
+                <!--<div class="dropdown-menu">-->
+                    <!--<form class="px-4 py-3">-->
+                        <!--<div class="form-group">-->
+                            <!--<label for="exampleDropdownFormEmail1">Email address</label>-->
+                            <!--<input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">-->
+                        <!--</div>-->
+                        <!--<div class="form-group">-->
+                            <!--<label for="exampleDropdownFormPassword1">Password</label>-->
+                            <!--<input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">-->
+                        <!--</div>-->
+                        <!--<div class="form-check">-->
+                            <!--<input type="checkbox" class="form-check-input" id="dropdownCheck">-->
+                            <!--<label class="form-check-label" for="dropdownCheck">-->
+                                <!--Remember me-->
+                            <!--</label>-->
+                        <!--</div>-->
+                        <!--<button type="submit" class="btn btn-primary">Sign in</button>-->
+                    <!--</form>-->
+                    <!--<div class="dropdown-divider"></div>-->
+                    <!--<a class="dropdown-item" href="#">New around here? Sign up</a>-->
+                    <!--<a class="dropdown-item" href="#">Forgot password?</a>-->
+                <!--</div>-->
+            <!--</div>-->
+        </li>
+    </ul>
+</nav>
+<div class="container-fluid">
+    <h1>Delphi</h1>
+</div>
 {% endblock %}
 
 {% block javascript %}

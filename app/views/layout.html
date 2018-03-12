@@ -14,10 +14,17 @@
     {% block stylesheets %}{% endblock stylesheets %}
 </head>
 <body>
-    <div class="container-fluid">
-        {% block content %}{% endblock %}
+    <div id="all-content" class="container-fluid">
+        <header id="header">{% block header %}{% endblock %}</header>
+        <div id="content" class="container-fluid">{% block content %}{% endblock %}</div>
+        <footer id="footer" >{% block footer %}{% endblock %}</footer>
     </div>
+
+    <footer id="jnp-footer" class="container-fluid text-center">
+        <p>Footer Text</p>
+    </footer>
     <script src="{{base_url}}js/jquery.min.js"></script>
+    <script src="{{base_url}}js/popper.min.js"></script>
     <script src="{{base_url}}js/bootstrap.min.js"></script>
     {% block javascript %}{% endblock javascript %}
 </body>
