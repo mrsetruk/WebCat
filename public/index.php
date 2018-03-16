@@ -29,12 +29,16 @@ set_exception_handler('Handler::exceptionHandler');
 
 /*
 |--------------------------------------------------------------------------
-| Configuration App
+| Configuration
 |--------------------------------------------------------------------------
 |
 */
 $config = new Config(require(CONFIG_PATH));
 //var_dump($config);
+
+\PicORM\PicORM::configure(array(
+    'datasource' => new PDO('mysql:dbname=jnpsoft_partfinder;host=localhost:3308', 'root', '')
+));
 
 /**
  * Routing

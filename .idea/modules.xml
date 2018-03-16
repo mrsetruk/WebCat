@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://C:\wamp64\www\webcat\.idea\MyPartFinderNew.iml" filepath="C:\wamp64\www\webcat\.idea\MyPartFinderNew.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/webcat.iml" filepath="$PROJECT_DIR$/.idea/webcat.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/WebCat.iml" filepath="$PROJECT_DIR$/.idea/WebCat.iml" />
     </modules>
   </component>
 </project>
