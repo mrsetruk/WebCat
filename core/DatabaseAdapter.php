@@ -20,6 +20,7 @@ class DatabaseAdapter
     private $username;
     private $password;
     private $hostname = '127.0.0.1';
+    private $port = '3306';
 
     /**
      * Constructor.
@@ -27,9 +28,9 @@ class DatabaseAdapter
     public function __construct()
     {
         $this->inhibitor = Closure::bind(
-            function ($name = null, $username = null, $password = null, $hostname = null): PDO {
+            function ($name = null, $username = null, $password = null, $hostname = null, $port = null): PDO {
                 return new PDO(
-                    'mysql:dbname='.($name ?? $this->name).';host='.($hostname ?? $this->hostname),
+                    'mysql:dbname='.($name ?? $this->name).';host='.($hostname ?? $this->hostname).';port='.($port ?? $this->port),
                     $username ?? $this->username,
                     $password ?? $this->password
                 );
@@ -78,6 +79,16 @@ class DatabaseAdapter
     {
         $this->hostname = $hostname;
     }
+
+    /**
+     * @param string $port
+     */
+    public function setPort(string $port)
+    {
+        $this->port = $port;
+    }
+
+
 
     /**
      * Get Database adapter instance.

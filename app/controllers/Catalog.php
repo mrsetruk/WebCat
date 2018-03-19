@@ -28,7 +28,7 @@ class Catalog extends Controller
 
         $cat = \App\Models\Catalog::findOne(array('name' => $catalog));
 
-        var_dump($this->scope);
+        var_dump($cat);
 
         if(!$cat){
             header('location: /');
@@ -42,7 +42,10 @@ class Catalog extends Controller
         }
 
 
-        View::renderTemplate('catalog/index.html',array('scope' => $this->scope));
+        View::renderTemplate('catalog/index.html',array(
+            'scope' => $this->scope,
+            'catalog' => $cat
+        ));
 
     }
 }

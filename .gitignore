@@ -125,3 +125,5 @@ typings/
 #/app/database.config.php
 
 
+.idea/inspectionProfiles/
+app/localisation/

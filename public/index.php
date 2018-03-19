@@ -21,14 +21,6 @@ set_exception_handler('\Core\Handler::exceptionHandler');
 
 /*
 |--------------------------------------------------------------------------
-| Start Session
-|--------------------------------------------------------------------------
-|
-*/
-//Session::init();
-
-/*
-|--------------------------------------------------------------------------
 | Configuration
 |--------------------------------------------------------------------------
 |
@@ -37,18 +29,32 @@ $config = new Core\Config(require(CONFIG_PATH));
 
 $adapter = new Core\DatabaseAdapter();
 $adapter->setHostname($config->get('db_hostname'));
+$adapter->setPort($config->get('db_port'));
 $adapter->setName($config->get('db_name'));
 $adapter->setUsername($config->get('db_username'));
 $adapter->setPassword($config->get('db_password'));
+
 $db = $adapter->getInstance();
-
-$session_handler = new \Core\SessionHandler($db, $config->get('session_name_table'));
-
-$session = \Core\Session::getInstance();
 
 \Core\ORM\ORM::configure(array(
     'data_source' => $db
 ));
+
+/*
+|--------------------------------------------------------------------------
+| Start Session
+|--------------------------------------------------------------------------
+|
+*/
+new \Core\SessionHandler($db, $config->get('session_name_table'));
+$session = \Core\Session::getInstance();
+
+/*
+|--------------------------------------------------------------------------
+| Start Scope
+|--------------------------------------------------------------------------
+|
+*/
 
 $scope = \Core\Scope::getInstance();
 $scope->app = require $config->get('app_dir') . '/config/app.config.php';
@@ -123,6 +129,10 @@ $router->mount('/auth', function() use ($router, $config) {
     $router->get('/login', '\\App\\Controllers\\Auth@login');
 
     $router->get('/login-staff', '\\App\\Controllers\\Auth@staff_login');
+
+    $router->post('/login-staff', function (){
+        var_dump($_POST);
+    });
 
     $router->match('GET|POST', '/logout', function() {
 
