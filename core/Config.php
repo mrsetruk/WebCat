@@ -1,4 +1,7 @@
 <?php
+
+namespace Core;
+
 /**
  * Created by PhpStorm.
  * User: DEV

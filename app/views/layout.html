@@ -9,8 +9,9 @@
     <title>{% block title %}{% endblock %}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href ="{{base_url}}css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="{{base_url}}css/global.css">
+    <link rel="stylesheet" type="text/css" href ="{{scope.app.base_url}}css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href ="{{scope.app.base_url}}css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="{{scope.app.base_url}}css/global.css">
     {% block stylesheets %}{% endblock stylesheets %}
 </head>
 <body>
@@ -23,9 +24,9 @@
     <footer id="jnp-footer" class="container-fluid text-center">
         <p>Footer Text</p>
     </footer>
-    <script src="{{base_url}}js/jquery.min.js"></script>
-    <script src="{{base_url}}js/popper.min.js"></script>
-    <script src="{{base_url}}js/bootstrap.min.js"></script>
+    <script src="{{scope.app.base_url}}js/jquery.min.js"></script>
+    <script src="{{scope.app.base_url}}js/popper.min.js"></script>
+    <script src="{{scope.app.base_url}}js/bootstrap.min.js"></script>
     {% block javascript %}{% endblock javascript %}
 </body>
 </html>

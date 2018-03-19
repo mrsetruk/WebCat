@@ -1,5 +1,11 @@
 <?php
 
+namespace App\Controllers;
+use Core\{
+    Controller,
+    View
+};
+
 /**
  * Created by PhpStorm.
  * User: DEV

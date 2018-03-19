@@ -1,4 +1,9 @@
 <?php
+
+namespace Core;
+use Closure;
+use PDO;
+
 /**
  * Created by PhpStorm.
  * User: DEV

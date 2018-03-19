@@ -1,4 +1,7 @@
 <?php
+
+namespace Core;
+
 /**
  * Base controller
  *
@@ -6,9 +9,13 @@
  */
 abstract class Controller
 {
+    protected $scope;
+    protected $session;
+
     public function __construct()
     {
-
+        $this->scope = Scope::getInstance();
+        $this->session = Session::getInstance();
     }
 
     /**
@@ -20,7 +27,7 @@ abstract class Controller
      * @param string $name Method name
      * @param array $args Arguments passed to the method
      * @return void
-     * @throws Exception
+     * @throws \Exception
      */
     public function __call($name, $args)
     {

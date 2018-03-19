@@ -21,6 +21,7 @@ return array_merge(
          *
          */
         'hash_cost_factor' => '10',
+        'session_name_table' => 'sessions'
     ],
     require(__DIR__ . '/config/app.config.php'),
     require(__DIR__ . '/config/database.config.php'),

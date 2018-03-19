@@ -1,5 +1,9 @@
 <?php
 
+namespace Core;
+use ErrorException;
+use Exception;
+
 /**
  * Created by PhpStorm.
  * User: Marc

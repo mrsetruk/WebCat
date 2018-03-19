@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "80f74080ea883d9374554fbb5774d121",
+    "content-hash": "ff618331ee1c5616e88a2019276ebd3b",
     "packages": [
         {
             "name": "phpmailer/phpmailer",
@@ -71,47 +71,6 @@
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
             "time": "2018-01-05T13:19:58+00:00"
-        },
-        {
-            "name": "picorm/picorm",
-            "version": "0.0.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/iNem0o/PicORM.git",
-                "reference": "684a37e9ccbf29314e62e0314105d130c561521d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/iNem0o/PicORM/zipball/684a37e9ccbf29314e62e0314105d130c561521d",
-                "reference": "684a37e9ccbf29314e62e0314105d130c561521d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.4.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "PicORM": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL"
-            ],
-            "authors": [
-                {
-                    "name": "inem0o",
-                    "email": "contact@inem0o.fr",
-                    "homepage": "https://github.com/iNem0o"
-                }
-            ],
-            "description": "Lightweight ORM",
-            "homepage": "https://github.com/iNem0o/PicORM",
-            "keywords": [
-                "orm"
-            ],
-            "time": "2015-10-31T09:37:00+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
