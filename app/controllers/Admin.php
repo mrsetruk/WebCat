@@ -14,9 +14,13 @@ use Core\{
  */
 class Admin extends Controller
 {
-    public function access()
+    public function dashboard()
     {
         View::renderTemplate('admin/index.html');
 
+    }
+
+    function login(){
+        View::renderTemplate('admin/login.html', array('scope' => $this->scope));
     }
 }

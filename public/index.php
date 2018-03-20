@@ -87,16 +87,22 @@ $router->get('/', function() {
 $router->before('GET|POST', '/staff.*', function() use ($session) {
     $user_id = $session->get('staff_id');
 //    if (!$user_id) {
-//        header('location: /auth/login-staff');
+//        header('location: /staff/login');
 //        exit();
 //    }
 });
 
-$router->mount('/staff.*', function() use ($router, $session) {
+$router->mount('/staff', function() use ($router, $session) {
 
-    $router->get('/','\\App\\Controllers\\Staff@access');
+    $router->get('/','\\App\\Controllers\\Staff@dashboard');
 
-    $router->get('/(\w+)?','\\App\\Controllers\\Staff@access');
+    $router->match('GET|POST', '/login','\\App\\Controllers\\Staff@login');
+
+    $router->match('GET|POST', '/logout', function() {
+
+    });
+
+    $router->get('/(\w+)?','\\App\\Controllers\\Staff@dashboard');
 
 });
 
@@ -106,33 +112,16 @@ $router->mount('/staff.*', function() use ($router, $session) {
 $router->before('GET|POST', '/admin.*', function() use ($session) {
     $user_id = $session->get('user_id');
 //    if (!$user_id) {
-//        header('location: /auth/login');
+//        header('location: /admin/login');
 //        exit();
 //    }
 });
 
 $router->mount('/admin', function() use ($router) {
 
-    $router->get('/', '\\App\\Controllers\\Admin@access');
+    $router->get('/', '\\App\\Controllers\\Admin@dashboard');
 
-});
-
-/*
-* Authentification Routing
-*/
-$router->before('GET|POST', '/auth.*', function() {
-
-});
-
-$router->mount('/auth', function() use ($router, $config) {
-
-    $router->get('/login', '\\App\\Controllers\\Auth@login');
-
-    $router->get('/login-staff', '\\App\\Controllers\\Auth@staff_login');
-
-    $router->post('/login-staff', function (){
-        var_dump($_POST);
-    });
+    $router->get('/login', '\\App\\Controllers\\Admin@login');
 
     $router->match('GET|POST', '/logout', function() {
 
@@ -143,8 +132,21 @@ $router->mount('/auth', function() use ($router, $config) {
 /*
 * catalog Routing
 */
-//$router->setNamespace('\\App\\Controllers');
-$router->get('/(\w+)','\\App\\Controllers\\Catalog@access');
+$router->before('GET|POST', '/login.*', function() use ($session) {
+    $user_id = $session->get('user_id');
+//    if (!$user_id) {
+//        header('location: /login');
+//        exit();
+//    }
+});
 
+
+$router->get('/login.*', '\\App\\Controllers\\Catalog@login');
+
+$router->match('GET|POST', '/logout.*', function() {
+
+});
+
+$router->get('/(\w+)','\\App\\Controllers\\Catalog@index');
 
 $router->run();

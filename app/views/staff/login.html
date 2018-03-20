@@ -1,0 +1,42 @@
+{% extends "layout-staff.html" %}
+
+{% block title %}Staff Login{% endblock %}
+
+{%block stylesheets%}
+<link rel="stylesheet" type="text/css" href="{{scope.app.base_url}}css/sb-admin.css">
+{%endblock stylesheets%}
+
+{% block content %}
+<div class="container">
+    <div class="card card-login mx-auto mt-5">
+        <div class="card-header">Login</div>
+        <div class="card-body">
+            <form action="login" method="post">
+                <div class="form-group">
+                    <label for="login-input-email">Email address</label>
+                    <input class="form-control" id="login-input-email" type="email" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="login-input-password">Password</label>
+                    <input class="form-control" id="login-input-password" type="password" placeholder="Password" name="password">
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" type="checkbox"> Remember Password</label>
+                    </div>
+                </div>
+                <input class="btn btn-primary btn-block" type="submit" value="Login" >
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    function submit() {
+
+    }
+</script>
+{% endblock javascript %}

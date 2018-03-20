@@ -17,7 +17,7 @@ class Catalog extends Controller
 {
 
 
-    public function access($catalog)
+    public function index($catalog)
     {
     	// Load catalog
 
@@ -37,7 +37,7 @@ class Catalog extends Controller
 
         // Verified auth Type (Public, protected, private)
         if($cat->ref_authentification_type_code === 'Private'){
-            header('location: /auth/login');
+            header('location: /login');
             exit();
         }
 
@@ -47,5 +47,9 @@ class Catalog extends Controller
             'catalog' => $cat
         ));
 
+    }
+
+    function login(){
+        View::renderTemplate('catalog/login.html', array('scope' => $this->scope));
     }
 }

@@ -14,18 +14,30 @@ use Core\View;
 
 class Staff extends Controller
 {
-    function access($action = null){
-//       var_dump($action);
-       View::renderTemplate('staff/index.html',array(
-           'scope' => $this->scope,
-           'css' => [
-               'class' => [
-                   'body' => 'fixed-nav sticky-footer bg-dark'
-               ],
-               'id' => [
-                   'body' => 'page-top'
-               ]
-           ]
-       ));
+    function dashboard($action = null){
+        var_dump($_POST);
+        View::renderTemplate('staff/index.html',array(
+            'scope' => $this->scope,
+            'css' => [
+                'class' => [
+                    'body' => 'fixed-nav sticky-footer bg-dark'
+                ],
+                'id' => [
+                    'body' => 'page-top'
+                ]
+            ]
+        ));
+    }
+
+    function login(){
+        var_dump($_POST);
+        View::renderTemplate('staff/login.html', array(
+            'scope' => $this->scope,
+            'css' => [
+                'class' => [
+                    'body' => 'bg-dark'
+                ]
+            ]
+        ));
     }
 }
