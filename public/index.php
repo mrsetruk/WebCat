@@ -85,7 +85,7 @@ $router->set404(function() {
     Core\View::renderTemplate("404.html");
 });
 
-$router->get('/', function() {
+$router->get('/', function() use ($scope) {
 //     header('location: http://partcat.com');
 //     exit();
 });
@@ -97,14 +97,15 @@ $router->before('GET|POST', '/staff.*', function() use ($session, $router) {
     // Check Ip
 });
 
-$router->mount('/staff', function() use ($router, $session) {
+$router->mount('/staff', function() use ($router, $session, $scope) {
 
     $router->get('/','\\App\\Controllers\\Staff@dashboard');
 
     $router->match('GET|POST', '/login','\\App\\Controllers\\Staff@login');
 
-    $router->match('GET|POST', '/logout', function() use ($session){
+    $router->match('GET|POST', '/logout', function() use ($session, $scope){
         $staff_id = $session->remove('staff_id');
+        unset($scope->staff);
         header('location: /staff/login');
         exit();
     });

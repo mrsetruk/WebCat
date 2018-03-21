@@ -15,8 +15,16 @@ use Core\View;
 class Staff extends Controller
 {
     private $sections = [
-        'index' => 'staff/index.html',
-        'clients' => 'staff/clients.html'
+        'index' => [
+            'view' => 'staff/index.html',
+            'href' => 'staff/index',
+            'name' => 'Overview'
+        ],
+        'clients' => [
+            'view' => 'staff/client.html',
+            'href' => 'staff/clients',
+            'name' => 'Clients'
+        ]
     ];
 
     function dashboard($section = 'index'){
@@ -31,17 +39,21 @@ class Staff extends Controller
             exit();
         }
 
-        View::renderTemplate($this->sections[$section],array(
-            'scope' => $this->scope,
-            'css' => [
-                'class' => [
-                    'body' => 'fixed-nav sticky-footer bg-dark'
-                ],
-                'id' => [
-                    'body' => 'page-top'
-                ]
+        $this->scope->css = [
+            'class' => [
+                'body' => 'fixed-nav sticky-footer bg-dark'
             ],
-            'staff' => $staff
+            'id' => [
+                'body' => 'page-top'
+            ]
+        ];
+
+        $this->scope->staff = $staff;
+
+        $this->scope->section = $this->sections[$section];
+
+        View::renderTemplate($this->sections[$section]['view'],array(
+            'scope' => $this->scope
         ));
     }
 

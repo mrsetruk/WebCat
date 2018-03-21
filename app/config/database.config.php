@@ -8,7 +8,7 @@
 
 return [
     'db_hostname' => 'localhost',
-    'db_port'     => 3306,
+    'db_port'     => 3308,
     'db_name'     => 'jnp_web_cat',
     'db_username' => 'jnp_admin',
     'db_password' => 'jnp_password',
