@@ -16,11 +16,15 @@ class Admin extends Controller
 {
     public function dashboard()
     {
-        View::renderTemplate('admin/index.html');
+        View::renderTemplate('admin/index.html',array(
+            'scope' => $this->scope
+        ));
 
     }
 
     function login(){
-        View::renderTemplate('admin/login.html', array('scope' => $this->scope));
+        View::renderTemplate('admin/login.html', array(
+            'scope' => $this->scope
+        ));
     }
 }

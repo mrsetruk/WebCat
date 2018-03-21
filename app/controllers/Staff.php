@@ -14,9 +14,24 @@ use Core\View;
 
 class Staff extends Controller
 {
-    function dashboard($action = null){
-        var_dump($_POST);
-        View::renderTemplate('staff/index.html',array(
+    private $sections = [
+        'index' => 'staff/index.html',
+        'clients' => 'staff/clients.html'
+    ];
+
+    function dashboard($section = 'index'){
+        $staff = false;
+        if($this->session->get('staff_id')){
+            $staff = \App\Models\Staff::findOne([
+                'id' => $this->session->get('staff_id')
+            ]);
+        }
+        if(!$staff){
+            header('location: /staff/login');
+            exit();
+        }
+
+        View::renderTemplate($this->sections[$section],array(
             'scope' => $this->scope,
             'css' => [
                 'class' => [
@@ -25,12 +40,24 @@ class Staff extends Controller
                 'id' => [
                     'body' => 'page-top'
                 ]
-            ]
+            ],
+            'staff' => $staff
         ));
     }
 
     function login(){
-        var_dump($_POST);
+        if(isset($this->request->getBodyParameters()['email']) and isset($this->request->getBodyParameters()['password'])){
+            $staff = \App\Models\Staff::findOne([
+                'email' => $this->request->getBodyParameter('email')
+            ]);
+
+            if($staff and ($staff->password === $this->request->getBodyParameter('password'))){
+                $this->session->set('staff_id',$staff->id);
+                header('location: /staff');
+                exit();
+            }
+        }
+
         View::renderTemplate('staff/login.html', array(
             'scope' => $this->scope,
             'css' => [
@@ -39,5 +66,6 @@ class Staff extends Controller
                 ]
             ]
         ));
+
     }
 }

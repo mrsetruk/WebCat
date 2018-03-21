@@ -8,6 +8,8 @@ namespace Core;
  * Date: 3/5/2018
  * Time: 8:15 AM
  */
+use Core\Http\Request;
+use Core\Http\Response;
 
 /**
  * Class Router.
@@ -42,6 +44,23 @@ class Router
      * @var string Default Controllers Namespace
      */
     private $namespace = '';
+
+    public $request;
+
+    public $response;
+
+    /**
+     * Router constructor.
+     * @param $request
+     * @param $response
+     */
+    public function __construct(Request $request, Response $response)
+    {
+        $this->request = $request;
+        $this->response = $response;
+    }
+
+
     /**
      * Store a before middleware route and a handling function to be executed when accessed using one of the specified methods.
      *
@@ -340,7 +359,7 @@ class Router
             if (class_exists($controller)) {
                 // First check if is a static method, directly trying to invoke it.
                 // If isn't a valid static method, we will try as a normal method invocation.
-                if (call_user_func_array(array(new $controller(), $method), $params) === false) {
+                if (call_user_func_array(array(new $controller($this->request, $this->response), $method), $params) === false) {
                     // Try to call the method as an non-static method. (the if does nothing, only avoids the notice)
                     if (forward_static_call_array(array($controller, $method), $params) === false);
                 }

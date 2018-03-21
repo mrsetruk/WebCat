@@ -1,6 +1,8 @@
 <?php
 
 namespace Core;
+use Core\Http\Request;
+use Core\Http\Response;
 
 /**
  * Base controller
@@ -11,11 +13,15 @@ abstract class Controller
 {
     protected $scope;
     protected $session;
+    protected $request;
+    protected $response;
 
-    public function __construct()
+    public function __construct(Request $request, Response $response)
     {
         $this->scope = Scope::getInstance();
         $this->session = Session::getInstance();
+        $this->request = $request;
+        $this->response = $response;
     }
 
     /**

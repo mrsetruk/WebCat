@@ -59,6 +59,15 @@ $session = \Core\Session::getInstance();
 $scope = \Core\Scope::getInstance();
 $scope->app = require $config->get('app_dir') . '/config/app.config.php';
 
+/*
+|--------------------------------------------------------------------------
+| Http Request And Response
+|--------------------------------------------------------------------------
+|
+*/
+$request = new \Core\Http\HttpRequest($_GET, $_POST, $_COOKIE, $_FILES, $_SERVER, file_get_contents('php://input'));
+$response = new \Core\Http\HttpResponse;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -69,7 +78,7 @@ $scope->app = require $config->get('app_dir') . '/config/app.config.php';
 /**
  * Routing
  */
-$router =  new Core\Router();
+$router =  new Core\Router($request,$response);
 
 $router->set404(function() {
     header('HTTP/1.1 404 Not Found');
@@ -84,12 +93,8 @@ $router->get('/', function() {
 /*
 * staff Routing
 */
-$router->before('GET|POST', '/staff.*', function() use ($session) {
-    $user_id = $session->get('staff_id');
-//    if (!$user_id) {
-//        header('location: /staff/login');
-//        exit();
-//    }
+$router->before('GET|POST', '/staff.*', function() use ($session, $router) {
+    // Check Ip
 });
 
 $router->mount('/staff', function() use ($router, $session) {
@@ -98,8 +103,10 @@ $router->mount('/staff', function() use ($router, $session) {
 
     $router->match('GET|POST', '/login','\\App\\Controllers\\Staff@login');
 
-    $router->match('GET|POST', '/logout', function() {
-
+    $router->match('GET|POST', '/logout', function() use ($session){
+        $staff_id = $session->remove('staff_id');
+        header('location: /staff/login');
+        exit();
     });
 
     $router->get('/(\w+)?','\\App\\Controllers\\Staff@dashboard');
