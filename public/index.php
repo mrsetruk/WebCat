@@ -110,6 +110,8 @@ $router->mount('/staff', function() use ($router, $session, $scope) {
         exit();
     });
 
+
+
     $router->get('/(\w+)?','\\App\\Controllers\\Staff@dashboard');
 
 });

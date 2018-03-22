@@ -24,6 +24,31 @@ class Staff extends Controller
             'view' => 'staff/client.html',
             'href' => 'staff/clients',
             'name' => 'Clients'
+        ],
+        'plannings' => [
+            'view' => 'staff/planning.html',
+            'href' => 'staff/planning',
+            'name' => 'Planning (Maintenance)'
+        ],
+        'scripts' => [
+            'view' => 'staff/script.html',
+            'href' => 'staff/script',
+            'name' => 'Script (Maintenance)'
+        ],
+        'reports' => [
+            'view' => 'staff/report.html',
+            'href' => 'staff/report',
+            'name' => 'Reports'
+        ],
+        'notifications' => [
+            'view' => 'staff/notifications.html',
+            'href' => 'staff/notifications',
+            'name' => 'Notification (Communication)'
+        ],
+        'messages' => [
+            'view' => 'staff/message.html',
+            'href' => 'staff/messages',
+            'name' => 'Messages (Communication)'
         ]
     ];
 
@@ -52,6 +77,10 @@ class Staff extends Controller
 
         $this->scope->section = $this->sections[$section];
 
+        $this->scope->page = [
+            'title' => 'Dashboard (' . $staff->username . ')'
+        ];
+
         View::renderTemplate($this->sections[$section]['view'],array(
             'scope' => $this->scope
         ));
@@ -70,13 +99,18 @@ class Staff extends Controller
             }
         }
 
-        View::renderTemplate('staff/login.html', array(
-            'scope' => $this->scope,
-            'css' => [
-                'class' => [
-                    'body' => 'bg-dark'
-                ]
+        $this->scope->css = [
+            'class' => [
+                'body' => 'bg-dark'
             ]
+        ];
+
+        $this->scope->page = [
+            'title' => 'Staff Login'
+        ];
+
+        View::renderTemplate('staff/login.html', array(
+            'scope' => $this->scope
         ));
 
     }
