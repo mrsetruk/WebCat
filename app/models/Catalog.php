@@ -27,6 +27,6 @@ class Catalog extends Model {
 
     protected static function defineRelations()
     {
-        self::addRelationOneToOne('ref_authentification_type_code', '\App\Models\Reference_Auth_Type', 'code', 'description');
+        self::addRelationOneToOne('ref_authentification_type_code', '\App\Models\ReferenceAuthType', 'code', 'description');
     }
 }

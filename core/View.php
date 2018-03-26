@@ -27,6 +27,19 @@ class View
             throw new \Exception("$file not found");
         }
     }
+
+    public static function get($view, $args = [])
+    {
+        extract($args, EXTR_SKIP);
+        $file = dirname(__DIR__) . "/app/views/$view";  // relative to Core directory
+        if (is_readable($file)) {
+            ob_start();
+            include( $file );
+            return ob_get_clean();
+        } else {
+            throw new \Exception("$file not found");
+        }
+    }
     /**
      * Render a view template using Twig
      *
@@ -43,5 +56,14 @@ class View
             $twig = new \Twig_Environment($loader);
         }
         echo $twig->render($template, $args);
+    }
+
+    public static function getTemplate($template, $args = []){
+        static $twig = null;
+        if ($twig === null) {
+            $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/app/views');
+            $twig = new \Twig_Environment($loader);
+        }
+        return $twig->render($template, $args);
     }
 }

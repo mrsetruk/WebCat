@@ -2,7 +2,7 @@
 
 
 namespace App\Controllers;
-use App\Models\Reference_Auth_Type;
+use App\Models\ReferenceAuthType;
 use Core\{
     Config, Controller, DatabaseAdapter, ORM\ORM, Session, View
 };

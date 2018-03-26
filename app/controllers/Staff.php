@@ -25,6 +25,11 @@ class Staff extends Controller
             'href' => 'staff/clients',
             'name' => 'Clients'
         ],
+        'catalog' => [
+            'view' => 'staff/catalog.html',
+            'href' => 'staff/catalogs',
+            'name' => 'Catalog'
+        ],
         'plannings' => [
             'view' => 'staff/planning.html',
             'href' => 'staff/planning',
@@ -41,26 +46,49 @@ class Staff extends Controller
             'name' => 'Reports'
         ],
         'notifications' => [
-            'view' => 'staff/notifications.html',
+            'view' => 'staff/notification.html',
             'href' => 'staff/notifications',
-            'name' => 'Notification (Communication)'
+            'name' => 'Notifications (Communication)'
         ],
         'messages' => [
             'view' => 'staff/message.html',
             'href' => 'staff/messages',
             'name' => 'Messages (Communication)'
+        ],
+        'archives' => [
+            'view' => 'staff/archive.html',
+            'href' => 'staff/archive',
+            'name' => 'Archives'
+        ],
+        'links' => [
+            'view' => 'staff/link.html',
+            'href' => 'staff/links',
+            'name' => 'Links'
         ]
     ];
 
-    function dashboard($section = 'index'){
+    private function getStaffLogged(){
         $staff = false;
         if($this->session->get('staff_id')){
             $staff = \App\Models\Staff::findOne([
                 'id' => $this->session->get('staff_id')
             ]);
+            if($staff) return $staff;
+            else return false;
         }
+        return false;
+    }
+
+    function dashboard($section = 'index'){
+        $staff = $this->getStaffLogged();
         if(!$staff){
             header('location: /staff/login');
+            exit();
+        }
+
+        if(!array_key_exists($section,$this->sections)){
+            header('HTTP/1.1 404 Not Found');
+            View::renderTemplate("404.html");
             exit();
         }
 
@@ -87,6 +115,10 @@ class Staff extends Controller
     }
 
     function login(){
+        if($this->getStaffLogged()){
+            header('location: /staff');
+            exit();
+        }
         if(isset($this->request->getBodyParameters()['email']) and isset($this->request->getBodyParameters()['password'])){
             $staff = \App\Models\Staff::findOne([
                 'email' => $this->request->getBodyParameter('email')
@@ -114,4 +146,5 @@ class Staff extends Controller
         ));
 
     }
+
 }

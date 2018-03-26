@@ -91,6 +91,19 @@ $router->get('/', function() use ($scope) {
 });
 
 /*
+* staff Api
+*/
+$router->before('GET|POST', '/api.*', function() use ($session, $router) {
+    // Check Ip
+});
+
+$router->mount('/api', function() use ($router, $session, $scope) {
+
+    $router->get('/(\w+)?','\\App\\Controllers\\Staff@dashboard');
+
+});
+
+/*
 * staff Routing
 */
 $router->before('GET|POST', '/staff.*', function() use ($session, $router) {
