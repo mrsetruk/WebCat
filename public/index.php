@@ -99,7 +99,13 @@ $router->before('GET|POST', '/api.*', function() use ($session, $router) {
 
 $router->mount('/api', function() use ($router, $session, $scope) {
 
-    $router->get('/(\w+)?','\\App\\Controllers\\Staff@dashboard');
+    $router->match('GET|POST','/company(/\d+)?', function($company_id) {
+        echo 'company #' . $company_id;
+    });
+
+    $router->match('GET|POST','/company(/\d+)?/users(/\w+)?', function($company_id, $cible_id) {
+        echo 'company #' . $company_id . ', users #' . $cible_id;
+    });
 
 });
 
