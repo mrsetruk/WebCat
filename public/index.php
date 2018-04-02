@@ -107,6 +107,19 @@ $router->mount('/api', function() use ($router, $session, $scope) {
         echo 'company #' . $company_id . ', users #' . $cible_id;
     });
 
+    $router->match('GET|POST','/catalog(/\d+)?', function($id = null) {
+        $response = null;
+        if($id){
+            $response = \App\Models\Catalog::findOne(array('id' => $id));
+        }
+        else{
+            $response = \App\Models\Catalog::find();
+            $response->fetch();
+            $response = $response->getModels();
+        }
+        echo json_encode($response, true);
+    });
+
 });
 
 /*
