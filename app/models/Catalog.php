@@ -19,16 +19,19 @@ class Catalog extends Model implements JsonSerializable {
 
     protected static $_tableFields = array(
         'name',
-        'ref_authentification_type_code'
+        'ref_authentification_type_code',
+        'company_id'
     );
 
     public $id;
     public $name;
     public $ref_authentification_type_code;
+    public $company_id;
 
     protected static function defineRelations()
     {
         self::addRelationOneToOne('ref_authentification_type_code', '\App\Models\ReferenceAuthType', 'code', 'description');
+        self::addRelationOneToOne('company_id', '\App\Models\Company', 'id');
     }
 
     /**
@@ -43,7 +46,8 @@ class Catalog extends Model implements JsonSerializable {
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'auth_type' => $this->ref_authentification_type_code
+            'auth_type' => $this->ref_authentification_type_code,
+            'company_id' => $this->company_id
         ];
     }
 }
